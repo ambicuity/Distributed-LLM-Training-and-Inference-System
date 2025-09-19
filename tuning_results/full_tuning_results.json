@@ -1,0 +1,33 @@
+{
+  "matmul": {
+    "improvement": 42.67800688502376,
+    "best_config": {
+      "block_size": 16,
+      "num_threads": 4,
+      "use_tensor_cores": false,
+      "memory_layout": "row_major"
+    },
+    "time": 2.142596483230591
+  },
+  "attention": {
+    "improvement": 38.11833747836852,
+    "best_config": {
+      "block_size_q": 32,
+      "block_size_k": 64,
+      "use_flash_attention": false,
+      "causal_mask": false,
+      "dropout_p": 0.0
+    },
+    "time": 21.102657318115234
+  },
+  "communication": {
+    "improvement": 86.70575510146932,
+    "best_config": {
+      "backend": "gloo",
+      "bucket_size_mb": 200,
+      "overlap_computation": false,
+      "compression": "none"
+    },
+    "time": 0.0016300678253173828
+  }
+}

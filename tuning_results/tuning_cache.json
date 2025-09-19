@@ -1,0 +1,39 @@
+{
+  "matmul_(1024, 1024, 1024)_cpu": {
+    "best_config": {
+      "block_size": 16,
+      "num_threads": 4,
+      "use_tensor_cores": false,
+      "memory_layout": "row_major"
+    },
+    "best_performance": 0.0119614839553833,
+    "improvement": 42.67800688502376,
+    "total_time": 2.142596483230591,
+    "iterations": 11
+  },
+  "attention_512_64_cpu": {
+    "best_config": {
+      "block_size_q": 32,
+      "block_size_k": 64,
+      "use_flash_attention": false,
+      "causal_mask": false,
+      "dropout_p": 0.0
+    },
+    "best_performance": 0.05066771507263183,
+    "improvement": 38.11833747836852,
+    "total_time": 21.102657318115234,
+    "iterations": 21
+  },
+  "comm_(1024, 1024)_torch.float32": {
+    "best_config": {
+      "backend": "gloo",
+      "bucket_size_mb": 200,
+      "overlap_computation": false,
+      "compression": "none"
+    },
+    "best_performance": 0.0007535981973514167,
+    "improvement": 86.70575510146932,
+    "total_time": 0.0016300678253173828,
+    "iterations": 8
+  }
+}
