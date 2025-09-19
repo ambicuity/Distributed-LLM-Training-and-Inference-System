@@ -1,0 +1,1 @@
+"""Configuration module - schema validation, presets"""

@@ -1,0 +1,24 @@
+{
+  "name": "llama-7b",
+  "arch": "decoder-only",
+  "layers": 32,
+  "hidden": 4096,
+  "ffn": 11008,
+  "heads": 32,
+  "head_dim": 128,
+  "vocab_size": 32000,
+  "max_position_embeddings": 4096,
+  "rope": {
+    "base": 10000.0,
+    "scaling": "linear"
+  },
+  "attention": {
+    "type": "multi_head",
+    "bias": false,
+    "dropout": 0.0
+  },
+  "activation": "silu",
+  "layer_norm_eps": 1e-5,
+  "tie_word_embeddings": false,
+  "estimated_params": 6738415616
+}
