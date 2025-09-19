@@ -1,8 +1,0 @@
-[console_scripts]
-llmctl = llmctl.cli.main:app
-
-[llmctl.plugins]
-exporters = llmctl.plugins.exporters:register
-kernels = llmctl.plugins.kernels:register
-quantizers = llmctl.plugins.quantizers:register
-schedulers = llmctl.plugins.schedulers:register
