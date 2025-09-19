@@ -1,0 +1,92 @@
+# Example A100 8xGPU Hardware Profile
+[system]
+hostname = "gpu-node-001"
+os = "Linux 5.15.0"
+python_version = "3.10.12"
+detected_at = "/workspace"
+
+[cpu]
+brand = "Intel Xeon Gold 6448Y"
+cores = 32
+threads = 64
+frequency_mhz = "2.1 GHz"
+architecture = "x86_64"
+
+[memory]
+total_gb = 512.0
+available_gb = 480.0
+used_gb = 32.0
+percentage = 6.25
+
+[gpu]
+count = 8
+driver_version = "535.129.03"
+cuda_version = "12.2"
+total_memory_gb = 640.0
+
+[[gpu.devices]]
+id = 0
+name = "NVIDIA A100-SXM4-80GB"
+memory_gb = 80.0
+compute_capability = "8.0"
+multiprocessors = 108
+
+[[gpu.devices]]
+id = 1
+name = "NVIDIA A100-SXM4-80GB"
+memory_gb = 80.0
+compute_capability = "8.0"
+multiprocessors = 108
+
+[[gpu.devices]]
+id = 2
+name = "NVIDIA A100-SXM4-80GB"
+memory_gb = 80.0
+compute_capability = "8.0"
+multiprocessors = 108
+
+[[gpu.devices]]
+id = 3
+name = "NVIDIA A100-SXM4-80GB"
+memory_gb = 80.0
+compute_capability = "8.0"
+multiprocessors = 108
+
+[[gpu.devices]]
+id = 4
+name = "NVIDIA A100-SXM4-80GB"
+memory_gb = 80.0
+compute_capability = "8.0"
+multiprocessors = 108
+
+[[gpu.devices]]
+id = 5
+name = "NVIDIA A100-SXM4-80GB"
+memory_gb = 80.0
+compute_capability = "8.0"
+multiprocessors = 108
+
+[[gpu.devices]]
+id = 6
+name = "NVIDIA A100-SXM4-80GB"
+memory_gb = 80.0
+compute_capability = "8.0"
+multiprocessors = 108
+
+[[gpu.devices]]
+id = 7
+name = "NVIDIA A100-SXM4-80GB"
+memory_gb = 80.0
+compute_capability = "8.0"
+multiprocessors = 108
+
+[interconnect]
+intra_node = "NVLink"
+inter_node = "InfiniBand"
+topology = "DGX-A100"
+
+[limits]
+estimated_flops = 2.496e15   # 8 x 312 TFLOPs
+memory_bw_gbps = 15480       # 8 x 1935 GB/s
+intra_node_bw_gbps = 600     # NVLink 4th gen
+inter_node_bw_gbps = 200     # InfiniBand HDR

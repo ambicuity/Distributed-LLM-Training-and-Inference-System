@@ -1,0 +1,73 @@
+# High-performance training configuration for LLaMA-7B on 8xA100
+[model]
+name = "llama-7b"
+arch = "decoder-only"
+config_file = "configs/models/llama-7b.json"
+
+[optimizer]
+type = "adamw"
+lr = 2e-4
+betas = [0.9, 0.95]
+weight_decay = 0.1
+eps = 1e-8
+scheduler = { type = "cosine", warmup_steps = 2000, total_steps = 100000 }
+
+[data]
+train = "s3://datasets/the-stack/train"
+val = "s3://datasets/the-stack/val"
+tokenizer = "meta-llama/Llama-2-7b-hf"
+pack_sequences = true
+max_length = 4096
+num_workers = 16
+prefetch_factor = 4
+
+[hardware]
+gpus_per_node = 8
+gpu = "A100-80GB"
+memory_gb = 80
+intra_node_interconnect = "NVLink"
+inter_node_interconnect = "InfiniBand-200G"
+cpu_pinning = "numa-aware"
+
+[parallel]
+strategy = "auto"
+tensor_parallel = 1
+pipeline_parallel = 1
+sequence_parallel = false
+zero_stage = 2
+activation_checkpoint = "selective"
+micro_batch_size = 4
+global_batch_size = 512
+gradient_accumulation_steps = 16
+
+[limits]
+target_flops = 2.0e15
+max_memory_gb = 72
+max_comm_bw_gbps = 600
+
+[checkpoint]
+path = "s3://checkpoints/llama-7b"
+interval_steps = 1000
+sharded = true
+async = true
+keep_latest = 5
+
+[training]
+max_steps = 100000
+eval_interval = 500
+save_interval = 1000
+log_interval = 10
+gradient_clipping = 1.0
+mixed_precision = "bf16"
+flash_attention = true
+compile_model = false
+
+[telemetry]
+otlp_endpoint = "http://otel-collector:4317"
+metrics = ["flops", "mem_bw", "comm_bw", "latency", "throughput", "loss", "grad_norm"]
+traces = true
+profiling = {
+  enable = true,
+  schedule = "step(100)",
+  activities = ["cpu", "cuda"]
+}
